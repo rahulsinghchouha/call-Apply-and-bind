@@ -53,3 +53,36 @@ apply	Yes	Array	Immediate
 bind	No	Individually	Delayed
 Use call or apply when you need to invoke a function immediately with a specific this.
 Use bind when you need a new function with this set to a specific value but want to call it later.
+
+
+==============================================================================================>
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+// function greet(){
+//     console.log(`hy my name is ${this.firstName} ${this.lastName}`)
+// }
+
+// const person = {
+//     firstName:"Rahul",
+//     lastName:"Singh"
+// }
+
+// const newFun = greet.bind(person); //this will not call immediately this will give a new function
+// newFun();
+
+const person = {
+  firstName: "Alice",
+  lastName: "Smith"
+};
+
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.firstName} ${this.lastName}${punctuation}`);
+}
+const boundGreet = greet.bind(person, "Good morning");  //because bind return a new function and we can ue same function in future
+setTimeout(() => boundGreet("!"), 2000); // Output after 2 seconds: "Good morning, Alice Smith!"
+
+
+
+//const boundGreet = greet.bind(person, "Good morning"); 
+//setTimeout(() => greet.call(person, "Good morning"), 2000); // Output after 2 seconds: "Good morning, Alice Smith undefined"
